@@ -1,0 +1,74 @@
+
+
+
+/* header */
+/* Style the header: fixed position (always stay at the top) */
+#header {
+    position: fixed;
+    top: 2.5vh;
+    z-index: 1;
+    height: 95vh;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-left: 10px;
+}
+
+
+.progress-container {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.progress-bar {
+    background: #000;
+    width: 2px;
+}
+
+.progress-marker {
+    border-radius: 50px;
+    transition-duration: .25s;
+    border: 1px solid #000;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    font-size: 8px;
+}
+
+.progress-marker.active:not(:hover) {
+    background: #000;
+    animation-name: scaleAnimation;
+    animation-duration: .25s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
+
+.progress-marker.inactive {
+    background: #FFF;
+}
+
+.progress-marker:hover {
+    background: yellow; 
+    z-index: 999;
+    transform: scale(1.5);
+}
+
+
+
+/* animations */
+@keyframes scaleAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
