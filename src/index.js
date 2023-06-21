@@ -1,7 +1,8 @@
-import './styles.css';
+import './styles/styles.css';
 
-const scProgressBar = {
+export const Bar = {
 
+    name: 'sc-progress-bar',
     progressMarkers: [],
     progressBars: [],
     currentPage: 0,
@@ -12,7 +13,7 @@ const scProgressBar = {
     jumpToPage: {},
 
     init: function (staticData) {
-        let {sectionHeights, currentPage, activate, deactivate, addCss, jumpToPage} = staticData;
+        let {sectionHeights, currentPage, activate, deactivate, jumpToPage} = staticData;
         this.currentPage = currentPage;
         this.sectionHeights = sectionHeights;
         this.activate = activate;
@@ -22,7 +23,6 @@ const scProgressBar = {
         this.buildProgressBar();
         this.progressBars = this.initProgressBar();
         this.progressMarkers = this.initProgressMarkers(currentPage);
-        addCss('scrollbar-styles.css');
     },
 
     handleScroll: function(scrolledPage, scrollProgress) {
@@ -123,6 +123,3 @@ const scProgressBar = {
         });
     },
 }
-
-// register plugin in the core 
-scCore.registerPlugin({ name: 'sc-progress-bar', plugin: scProgressBar });
