@@ -5,24 +5,40 @@
 /* Style the header: fixed position (always stay at the top) */
 #header {
     position: fixed;
-    top: 2.5vh;
+    top: 5vh;
     z-index: 1;
     height: 95vh;
     width: min-content;
+}
+
+#header > nav > ol {
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    padding-left: 10px;
+    list-style-type: none;
+    margin-block: 0;
 }
 
+#header > nav > ol > li {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header > nav > ol > li:last-child {
+   height: min-content;
+}
 
 .progress-container {
-    height: 80%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 10px;
+    height: 100%;;
 }
 
 .progress-bar {
@@ -40,10 +56,11 @@
     font-size: 8px;
 }
 
-.progress-marker.active:not(:hover) {
+.progress-marker.active {
     background: #000;
     animation-name: scaleAnimation;
-    animation-duration: .25s;
+    border-radius:50%;
+    animation-duration: .5s;
     animation-iteration-count: 1;
     animation-timing-function: ease;
 }
@@ -53,7 +70,6 @@
 }
 
 .progress-marker:hover {
-    background: yellow; 
     z-index: 999;
     transform: scale(1.5);
 }
@@ -63,12 +79,16 @@
 /* animations */
 @keyframes scaleAnimation {
     0% {
-      transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 0 0 0 #0006;
+    }
+    20% {
+        transform: scale(1.5);
     }
     50% {
-      transform: scale(1.5);
+        transform: scale(1);
     }
     100% {
-      transform: scale(1);
+        box-shadow: 0 0 10px 15px #0000;
     }
 }

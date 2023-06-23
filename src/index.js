@@ -1,4 +1,4 @@
-import './styles/styles.css';
+// import './styles/styles.css';
 
 export const Bar = {
 
@@ -19,7 +19,6 @@ export const Bar = {
         this.activate = activate;
         this.deactivate = deactivate;
         this.jumpToPage = jumpToPage;
-
         this.buildProgressBar();
         this.progressBars = this.initProgressBar();
         this.progressMarkers = this.initProgressMarkers(currentPage);
@@ -103,23 +102,50 @@ export const Bar = {
 
     buildProgressBar: function () {
         // build and attach the progress bars and markers to html
-        let header = document.querySelector('#header')
-        let barTemplate = document.querySelector('template#progress-bar');
-        let markerTemplate = document.querySelector('template#progress-marker');
+        let nav = document.createElement('nav');
+        let ol = document.createElement('ol');
+        
+        nav.appendChild(ol);
         let pages = [...document.querySelectorAll('.sc-page')];
 
         // for each page, create a marker and progress bar combo
         pages.forEach((page, i) => {
             let pageName = page.getAttribute('data-page-name');
-            let markerClone = markerTemplate.content.firstElementChild.cloneNode(true);
-            markerClone.innerText = pageName;
-            header.appendChild(markerClone);
+            let barContainer = document.createElement('li');
+
+            let progressMarker = document.createElement('div');
+            progressMarker.classList.add('progress-marker');
+
+            let progressMarkerLabel = document.createElement('p');
+            progressMarkerLabel.innerText = pageName;
+            progressMarker.appendChild(progressMarkerLabel);
+            barContainer.appendChild(progressMarker);
+
+            if (i < pages.length - 1) {
+                let progressBarContainer = document.createElement('div');
+                progressBarContainer.classList.add('progress-container')
+                let progressBar = document.createElement('div');
+                progressBar.classList.add('progress-bar');
+                progressBarContainer.appendChild(progressBar);
+                barContainer.appendChild(progressBarContainer);
+            }
+
+            ol.appendChild(barContainer);
+        
+            
+           
+            // let markerClone = markerTemplate.content.firstElementChild.cloneNode(true);
+            // markerClone.innerText = pageName;
+            // header.appendChild(markerClone);
 
             // do not create a bar for the last page
-            if (i < pages.length - 1) {
-                let barClone = barTemplate.content.firstElementChild.cloneNode(true);
-                header.appendChild(barClone);
-            }
+            // if (i < pages.length - 1) {
+            //     let barClone = barTemplate.content.firstElementChild.cloneNode(true);
+            //     header.appendChild(barClone);
+            // }
         });
+        let header = document.querySelector('#header');
+        header.appendChild(nav);
+        console.log(header)
     },
 }
