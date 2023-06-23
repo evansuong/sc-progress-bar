@@ -74,13 +74,17 @@ export const Bar = {
     initProgressMarkers: function (currentPage) {
         let progressMarkers = [...document.querySelectorAll('.progress-marker')];
         progressMarkers.forEach((marker, i) => {
-
             // set activate and deactivate functions
             marker.activate = () => this.activate(marker);
             marker.deactivate = () => this.deactivate(marker);
-            marker.addEventListener('click', () => this.jumpToPage(i));
             marker.deactivate(); 
         });
+
+        let markerContainers = [...document.querySelectorAll('.marker-container')];
+        markerContainers.forEach((container, i) => {
+            // add click to navigate to that page
+            container.addEventListener('click', () => this.jumpToPage(i));
+        })
 
         progressMarkers[currentPage].activate();
         return progressMarkers;
