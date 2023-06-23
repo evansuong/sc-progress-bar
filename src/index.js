@@ -1,4 +1,4 @@
-// import './styles/styles.css';
+import './styles/styles.css';
 
 export const Bar = {
 
@@ -113,13 +113,18 @@ export const Bar = {
             let pageName = page.getAttribute('data-page-name');
             let barContainer = document.createElement('li');
 
+            let markerContainer = document.createElement('div');
+            markerContainer.classList.add('marker-container');
+
             let progressMarker = document.createElement('div');
             progressMarker.classList.add('progress-marker');
+            markerContainer.appendChild(progressMarker);
 
             let progressMarkerLabel = document.createElement('p');
+            progressMarkerLabel.classList.add('marker-label');
             progressMarkerLabel.innerText = pageName;
-            progressMarker.appendChild(progressMarkerLabel);
-            barContainer.appendChild(progressMarker);
+            markerContainer.appendChild(progressMarkerLabel);
+            barContainer.appendChild(markerContainer);
 
             if (i < pages.length - 1) {
                 let progressBarContainer = document.createElement('div');
@@ -131,18 +136,6 @@ export const Bar = {
             }
 
             ol.appendChild(barContainer);
-        
-            
-           
-            // let markerClone = markerTemplate.content.firstElementChild.cloneNode(true);
-            // markerClone.innerText = pageName;
-            // header.appendChild(markerClone);
-
-            // do not create a bar for the last page
-            // if (i < pages.length - 1) {
-            //     let barClone = barTemplate.content.firstElementChild.cloneNode(true);
-            //     header.appendChild(barClone);
-            // }
         });
         let header = document.querySelector('#header');
         header.appendChild(nav);

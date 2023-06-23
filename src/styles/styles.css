@@ -46,6 +46,15 @@
     width: 2px;
 }
 
+.marker-container {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    height: min-content;
+    transition-duration: 1s;
+    border-radius: 200px;
+}
+
 .progress-marker {
     border-radius: 50px;
     transition-duration: .25s;
@@ -54,6 +63,14 @@
     height: 10px;
     text-align: center;
     font-size: 8px;
+}
+
+.marker-label {
+    opacity: 0;
+    transform: translateX(-20px);
+    z-index: -1;
+    margin-block: 0;
+    transition-duration: .25s;
 }
 
 .progress-marker.active {
@@ -69,9 +86,13 @@
     background: #FFF;
 }
 
-.progress-marker:hover {
-    z-index: 999;
+.marker-container:hover .progress-marker {
     transform: scale(1.5);
+}
+
+.marker-container:hover .marker-label {
+    opacity: 1;
+    transform: translateX(20px);
 }
 
 
